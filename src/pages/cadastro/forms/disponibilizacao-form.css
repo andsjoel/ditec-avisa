@@ -1,0 +1,125 @@
+.form-disponibilizacao {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-disponibilizacao h2 {
+  color: var(--color-text-active);
+}
+
+.form-disponibilizacao p {
+  margin-bottom: 4rem;
+  max-width: 680px;
+}
+
+.form-disponibilizacao label {
+  margin: 6px;
+  font-weight: 600;
+}
+
+.form-disponibilizacao input[type="text"],
+.form-disponibilizacao input[type="email"],
+.form-disponibilizacao select {
+  padding: 6px 10px;
+  font-size: 1.2rem;
+  border: 1.5px solid var(--color-border);
+  border-radius: 8px;
+  transition: border-color 0.2s ease;
+}
+
+.form-disponibilizacao .input-mat {
+  width: 20vw;
+}
+
+.form-disponibilizacao button {
+  cursor: pointer;
+  padding: 8px 14px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.form-disponibilizacao button:disabled {
+  cursor: not-allowed;
+  background-color: var(--color-error);
+}
+
+.form-disponibilizacao .submit-button {
+  background-color: var(--color-success);
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+.form-disponibilizacao .submit-button:hover:not(:disabled) {
+  background-color: var(--color-success-hover);
+}
+
+.form-disponibilizacao .dynamic-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.form-disponibilizacao .dynamic-group input {
+  flex-grow: 1;
+}
+
+.form-disponibilizacao .dynamic-group button {
+  width: 32px;
+  height: 32px;
+  font-weight: 700;
+  border-radius: 50%;
+  line-height: 0;
+  padding: 0;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.form-disponibilizacao .dynamic-group button:hover {
+  background-color: #c1c1c1;
+}
+
+.form-disponibilizacao .radio-options {
+  display: flex;
+  gap: 20px;
+  margin-top: 6px;
+}
+
+.form-disponibilizacao .radio-options label {
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.form-disponibilizacao .radio-options input[type="radio"] {
+  margin-right: 6px;
+  cursor: pointer;
+}
+
+.form-disponibilizacao input[readonly] {
+  color: var(--color-primary-contrast);
+  cursor: not-allowed;
+}
+
+.form-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: space-between;
+}
+
+.form-left,
+.form-right {
+  flex: 1 1 45%;
+  min-width: 300px;
+}
+
+.form-right textarea {
+  padding: 8px 10px;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  border: 1.5px solid var(--color-border);
+  resize: vertical;
+}

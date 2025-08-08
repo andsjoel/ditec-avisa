@@ -1,13 +1,42 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  /* Backgrounds */
+  --color-bg: #1d1d1d;
+  --color-surface: #2a2a2a;
+  --color-card: #2a2a2a;
+
+  /* Text */
+  --color-text-primary: #e9e9e9;
+  --color-text-secondary: #5f9ec2;
+  --color-text-active: #1fc492;
+
+  /* Accent / Primary */
+  --color-primary: #00bcd4;
+  --color-primary-hover: #00acc1;
+  --color-primary-contrast: #1b1b1b;
+
+  /* Borders / Dividers */
+  --color-border: #3d6885;
+
+  /* Success / Warning / Error */
+  --color-success: #4caf50;
+  --color-success-hover: #2b6079;
+  --color-warning: #ff9800;
+  --color-error: #c55c54;
+
+  /* Others */
+  --color-overlay: rgba(36, 145, 218, 0.5);
+  --color-overlay-two: rgba(36, 218, 81, 0.5);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }

@@ -1,0 +1,9 @@
+#home-container {
+  display: flex;
+}
+
+.home-content {
+  margin-left: 220px;
+  padding: 30px;
+  flex: 1;
+}
