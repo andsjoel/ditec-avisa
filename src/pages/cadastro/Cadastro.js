@@ -19,7 +19,7 @@ const Cadastro = () => {
               className={selectedNav === 'entrada' ? 'active' : ''}
               onClick={() => setSelectedNav('entrada')}
             >
-              Entrada Balcão
+              Gerar termo
             </li>
             <li
               className={selectedNav === 'disponibilizacao' ? 'active' : ''}
