@@ -17,7 +17,7 @@ const EntradaBalcaoForm = () => {
   const [formata, setFormata] = useState(false);
   const [backups, setBackups] = useState([]);
   const [dataAtual] = useState(new Date().toLocaleDateString());
-  const [observacao, setObservacao] = useState('Nota 1. Pendente da criação do Chamado.');
+  const [observacao, setObservacao] = useState('Nota 1. Motivo da Formatação: \nNota 2. Pendente da criação do Chamado.');
 
   const handleBuscar = () => {
     const info = mockDatabase[matricula];
@@ -128,7 +128,7 @@ const EntradaBalcaoForm = () => {
               checked={!formata}
               onChange={() => setFormata(false)}
             />
-            Sem formatação
+            Sem Backup
           </label>
           <label>
             <input
@@ -143,7 +143,7 @@ const EntradaBalcaoForm = () => {
                 }
               }}
             />
-            Com formatação
+            Com Backup
           </label>
         </div>
       </div>

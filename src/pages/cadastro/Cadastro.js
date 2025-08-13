@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import './cadastro.css';
 import Sidebar from '../../components/Sidebar/Sidebar';
-import EntradaBalcaoForm from './forms/EntradaBalcaoForm';
-import DisponibilizacaoForm from './forms/DisponibilizacaoForm ';
-
+import GerarTermo from './GerarTermo';
+import DisponibilizacaoForm from './forms/DisponibilizacaoForm';
 
 const Cadastro = () => {
-  const [selectedNav, setSelectedNav] = useState('entrada');
+  const [selectedNav, setSelectedNav] = useState('gerar-termo');
 
   return (
     <div className="cadastro-container">
@@ -16,10 +15,10 @@ const Cadastro = () => {
           <h2>Cadastro</h2>
           <ul>
             <li
-              className={selectedNav === 'entrada' ? 'active' : ''}
-              onClick={() => setSelectedNav('entrada')}
+              className={selectedNav === 'gerar-termo' ? 'active' : ''}
+              onClick={() => setSelectedNav('gerar-termo')}
             >
-              Gerar termo
+              Gerar Termo
             </li>
             <li
               className={selectedNav === 'disponibilizacao' ? 'active' : ''}
@@ -37,7 +36,7 @@ const Cadastro = () => {
         </nav>
 
         <section className="form-render-area">
-          {selectedNav === 'entrada' && <EntradaBalcaoForm />}
+          {selectedNav === 'gerar-termo' && <GerarTermo />}
           {selectedNav === 'disponibilizacao' && <DisponibilizacaoForm />}
           {selectedNav === 'garantia' && (
             <div>
