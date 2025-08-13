@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import EntradaBalcaoForm from './forms/EntradaBalcaoForm';
-// Garantia form será implementado depois
+import GarantiaForm from './forms/GarantiaForm';
 
 const GerarTermo = () => {
   const [opcaoSelecionada, setOpcaoSelecionada] = useState('');
@@ -38,12 +38,7 @@ const GerarTermo = () => {
           </div>
 
           {opcaoSelecionada === 'backup' && <EntradaBalcaoForm />}
-          {opcaoSelecionada === 'garantia' && (
-            <div>
-              <h3>Formulário de Garantia</h3>
-              <p>(Em desenvolvimento)</p>
-            </div>
-          )}
+          {opcaoSelecionada === 'garantia' && <GarantiaForm />}
         </>
       )}
     </div>
