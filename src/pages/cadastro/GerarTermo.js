@@ -19,13 +19,10 @@ const GerarTermo = () => {
         <div className="opcao-termo-selector">
           <h2>Escolha o tipo de termo a ser gerado:</h2>
           <button onClick={() => setOpcaoSelecionada('backup')}>
-            Gerar Termo de Backup
+            Termo de Backup
           </button>
           <button onClick={() => setOpcaoSelecionada('garantia')}>
-            Gerar Termo de Garantia
-          </button>
-          <button onClick={() => setOpcaoSelecionada('instalar')}>
-            Gerar Termo de Instalação
+            Termo de Garantia
           </button>
         </div>
       ) : (
@@ -34,11 +31,6 @@ const GerarTermo = () => {
             <button className="voltar-button" onClick={handleVoltar}>
               ← Voltar
             </button>
-            {/* <h2>
-              {opcaoSelecionada === 'backup'
-                ? 'Gerar Termo de Backup'
-                : 'Gerar Termo de Garantia'}
-            </h2> */}
           </div>
 
           {opcaoSelecionada === 'backup' && <FormatacaoForm />}

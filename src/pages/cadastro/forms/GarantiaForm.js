@@ -129,10 +129,10 @@ const GarantiaForm = () => {
           matricula: dados.matricula,
           unidade: dados.unidade,
           patrimonio: equipamento.patrimonio || 'Não se aplica',
-          serie: equipamento.serie || '___', // se tiver esse campo na sua state (vc pode adicionar)
+          serie: equipamento.serie || '___',
           title,
           backup: formatacaoForm === 'com' ? matriculasAdicionais.filter(m => m.trim() !== '').join(', ') : 'Dispensado',
-          instalacao: 'Não se aplica', // ou algum campo seu se for usar hardware
+          instalacao: 'Não se aplica',
         },
       });
     });
