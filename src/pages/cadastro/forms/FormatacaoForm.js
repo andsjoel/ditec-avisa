@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './entrada-balcao-form.css';
+import './formatacao-form.css';
 
 const mockDatabase = {
   '123456': {
@@ -18,6 +18,8 @@ const EntradaBalcaoForm = () => {
   const [backups, setBackups] = useState([]);
   const [dataAtual] = useState(new Date().toLocaleDateString());
   const [observacao, setObservacao] = useState('Nota 1. Motivo da Formatação: \nNota 2. Pendente da criação do Chamado.');
+  const [hardwareUpgrade, setHardwareUpgrade] = useState(false);
+  const [hardwareTipo, setHardwareTipo] = useState('');
 
   const handleBuscar = () => {
     const info = mockDatabase[matricula];
@@ -168,6 +170,36 @@ const EntradaBalcaoForm = () => {
           ))}
         </div>
       )}
+      <div className="form-entrada-balcao">
+        <label>
+          <input
+            type="checkbox"
+            checked={hardwareUpgrade}
+            onChange={(e) => {
+              setHardwareUpgrade(e.target.checked);
+              if (!e.target.checked) setHardwareTipo('');
+            }}
+          />
+          Hardware Upgrade
+        </label>
+
+        {hardwareUpgrade && (
+          <>
+            <label>Tipo de Hardware:</label>
+            <select
+              value={hardwareTipo}
+              onChange={(e) => setHardwareTipo(e.target.value)}
+            >
+              <option value="">Selecione</option>
+              <option value="HD">HD</option>
+              <option value="SSD">SSD</option>
+              <option value="GPU">GPU</option>
+              <option value="RAM">RAM</option>
+              <option value="Outro">Outro</option>
+            </select>
+          </>
+        )}
+      </div>
     </div>
 
     <div className="form-right">
@@ -176,7 +208,7 @@ const EntradaBalcaoForm = () => {
         <input
           type="text"
           readOnly
-          value={`[LAB] FORMATAÇÃO ${formata ? 'C/BKP' : 'S/BKP'} - Pat. ${patrimonio || '___'}`}
+          value={`[LAB] FORMATAÇÃO ${formata ? 'C/BKP' : 'S/BKP'}${hardwareUpgrade && hardwareTipo ? ` + Instalar ${hardwareTipo}` : ''} - Pat. ${patrimonio || '___'}`}
         />
 
         <label>Data:</label>

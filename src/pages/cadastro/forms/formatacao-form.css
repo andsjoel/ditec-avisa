@@ -123,3 +123,9 @@
   resize: vertical;
 }
 
+.form-entrada-balcao select {
+  padding: 6px 10px;
+  font-size: 1.2rem;
+  border: 1.5px solid var(--color-border);
+  border-radius: 8px;
+}

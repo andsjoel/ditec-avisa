@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './disponibilizacao-form.css';
+import './formatacao-form.css'; // Reaproveita o mesmo CSS
 
 const mockDatabase = {
   '123456': {
@@ -9,23 +9,13 @@ const mockDatabase = {
   },
 };
 
-// ✅ Opções de equipamento atualizadas
-const equipamentoOptions = [
-  'Desktop', 'Laptop', 'Mouse', 'Teclado', 'Monitor', 'HD', 'SSD',
-  'Cabo de Rede', 'Cabos Gerais', 'Outro'
-];
-
-const DisponibilizacaoForm = () => {
+const InstalacaoForm = () => {
   const [matricula, setMatricula] = useState('');
   const [dados, setDados] = useState(null);
   const [emails, setEmails] = useState([]);
-  const [chamadoNumero, setChamadoNumero] = useState('');
-  const [chamadoLink, setChamadoLink] = useState('');
   const [patrimonio, setPatrimonio] = useState('');
-  const [semPatrimonio, setSemPatrimonio] = useState(false); // ✅ novo estado
-  const [equipamento, setEquipamento] = useState('');
+  const [hardwareTipo, setHardwareTipo] = useState('');
   const [dataAtual] = useState(new Date().toLocaleDateString());
-  const [observacao, setObservacao] = useState('Nota 1. Marca / Modelo:\nNota 2. Descrição:');
 
   const handleBuscar = () => {
     const info = mockDatabase[matricula];
@@ -51,38 +41,36 @@ const DisponibilizacaoForm = () => {
   };
 
   const isFormularioValido = () => {
-    return (
-      dados &&
-      chamadoNumero.trim() !== '' &&
-      chamadoLink.trim() !== '' &&
-      (semPatrimonio || patrimonio.trim() !== '') &&
-      equipamento.trim() !== '' &&
-      emails.every((e) => e.trim() !== '')
-    );
+    const hasDados = !!dados;
+    const hasEmail = emails.every((e) => e.trim() !== '');
+    const hasPatrimonio = patrimonio.trim() !== '';
+    const hasUpgrade = hardwareTipo !== '';
+
+    return hasDados && hasEmail && hasPatrimonio && hasUpgrade;
   };
 
   return (
     <>
-      <div className="form-disponibilizacao">
-        <h2>Disponibilização de Equipamento</h2>
-        <p>Preencha a matrícula para quem será disponibilizado o Equipamento, em seguida preencha os dados necessários para cadastrar a Disponibilização no sistema da DITEC Avisa.</p>
+      <div className="form-entrada-balcao">
+        <h2>Cadastrar Equipamento para Instalação</h2>
+        <p>Preencha a matrícula do Solicitante e depois os dados necessários para gerar o termo de Instalação de Hardware e pré registrar a máquina no sistema da DITEC Avisa.</p>
 
         <label>Matrícula:</label>
         <input
-          className="input-mat"
+          className='input-mat'
           type="text"
           value={matricula}
           onChange={(e) => setMatricula(e.target.value)}
         />
         {!dados && (
-          <button className="input-mat" onClick={handleBuscar}>Avançar</button>
+          <button className='input-mat' onClick={handleBuscar}>Avançar</button>
         )}
       </div>
 
       {dados && (
         <div className="form-container">
           <div className="form-left">
-            <div className="form-disponibilizacao">
+            <div className="form-entrada-balcao">
               <label>Nome:</label>
               <input type="text" value={dados.nome} readOnly />
 
@@ -95,8 +83,8 @@ const DisponibilizacaoForm = () => {
                   <input
                     type="email"
                     value={email}
-                    onChange={(e) => handleEmailChange(e.target.value, index)}
                     readOnly={index === 0}
+                    onChange={(e) => handleEmailChange(e.target.value, index)}
                   />
                   {index !== 0 && emails.length > 1 && (
                     <button type="button" onClick={() => handleRemoveEmail(index)}>-</button>
@@ -106,83 +94,53 @@ const DisponibilizacaoForm = () => {
                   )}
                 </div>
               ))}
+            </div>
 
-              <label>Chamado nº:</label>
-              <input
-                type="text"
-                value={chamadoNumero}
-                onChange={(e) => setChamadoNumero(e.target.value)}
-              />
-
-              <label>Link do Chamado:</label>
-              <input
-                type="text"
-                value={chamadoLink}
-                onChange={(e) => setChamadoLink(e.target.value)}
-              />
-
-              <label>
-                <input
-                  type="checkbox"
-                  checked={semPatrimonio}
-                  onChange={(e) => {
-                    setSemPatrimonio(e.target.checked);
-                    if (e.target.checked) setPatrimonio('');
-                  }}
-                />
-                Sem Patrimônio
-              </label>
-
+            <div className="form-entrada-balcao">
               <label>Patrimônio nº:</label>
               <input
                 type="text"
                 value={patrimonio}
                 onChange={(e) => setPatrimonio(e.target.value)}
-                disabled={semPatrimonio}
               />
 
-              <label>Equipamento:</label>
+              <label>Tipo de Hardware:</label>
               <select
-                value={equipamento}
-                onChange={(e) => setEquipamento(e.target.value)}
+                value={hardwareTipo}
+                onChange={(e) => setHardwareTipo(e.target.value)}
               >
                 <option value="">Selecione</option>
-                {equipamentoOptions.map((opcao) => (
-                  <option key={opcao} value={opcao}>
-                    {opcao}
-                  </option>
-                ))}
+                <option value="HD">HD</option>
+                <option value="SSD">SSD</option>
+                <option value="GPU">GPU</option>
+                <option value="RAM">RAM</option>
+                <option value="Outro">Outro</option>
               </select>
             </div>
           </div>
 
           <div className="form-right">
-            <div className="form-disponibilizacao">
+            <div className="form-entrada-balcao">
               <label>Título:</label>
               <input
                 type="text"
                 readOnly
-                value={`[LAB][DISPONIBILIZAÇÃO] ${equipamento || '___'} - Pat. ${semPatrimonio ? 's/patrimônio' : patrimonio || '_____'} `}
+                value={
+                  `[LAB] Instalar ${hardwareTipo || '___'} - Pat. ${patrimonio || '___'}`
+                }
               />
 
               <label>Data:</label>
               <input type="text" value={dataAtual} readOnly />
-
-              <label>Observação:</label>
-              <textarea
-                value={observacao}
-                onChange={(e) => setObservacao(e.target.value)}
-                rows="4"
-              />
             </div>
 
-            <div className="form-disponibilizacao">
+            <div className="form-entrada-balcao">
               <button
                 disabled={!isFormularioValido()}
                 className="submit-button"
-                onClick={() => alert('Equipamento registrado com sucesso!')}
+                onClick={() => alert('Termo de Instalação gerado e cadastro realizado!')}
               >
-                Cadastrar
+                Gerar termo e Cadastrar
               </button>
             </div>
           </div>
@@ -192,4 +150,4 @@ const DisponibilizacaoForm = () => {
   );
 };
 
-export default DisponibilizacaoForm;
+export default InstalacaoForm;

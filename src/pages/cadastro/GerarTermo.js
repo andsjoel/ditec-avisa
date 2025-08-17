@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import EntradaBalcaoForm from './forms/EntradaBalcaoForm';
+import FormatacaoForm from './forms/FormatacaoForm';
 import GarantiaForm from './forms/GarantiaForm';
+import InstalacaoForm from './forms/InstalcaoForm';
 
 const GerarTermo = () => {
   const [opcaoSelecionada, setOpcaoSelecionada] = useState('');
@@ -23,6 +24,9 @@ const GerarTermo = () => {
           <button onClick={() => setOpcaoSelecionada('garantia')}>
             Gerar Termo de Garantia
           </button>
+          <button onClick={() => setOpcaoSelecionada('instalar')}>
+            Gerar Termo de Instalação
+          </button>
         </div>
       ) : (
         <>
@@ -30,15 +34,16 @@ const GerarTermo = () => {
             <button className="voltar-button" onClick={handleVoltar}>
               ← Voltar
             </button>
-            <h2>
+            {/* <h2>
               {opcaoSelecionada === 'backup'
                 ? 'Gerar Termo de Backup'
                 : 'Gerar Termo de Garantia'}
-            </h2>
+            </h2> */}
           </div>
 
-          {opcaoSelecionada === 'backup' && <EntradaBalcaoForm />}
+          {opcaoSelecionada === 'backup' && <FormatacaoForm />}
           {opcaoSelecionada === 'garantia' && <GarantiaForm />}
+          {opcaoSelecionada === 'instalar' && <InstalacaoForm />}
         </>
       )}
     </div>
