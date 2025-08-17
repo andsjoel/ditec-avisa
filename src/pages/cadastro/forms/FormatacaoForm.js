@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './formatacao-form.css';
+import gerarDocumento from '../../../utils/GerarDocumento';
 
 const mockDatabase = {
   '123456': {
@@ -64,6 +65,23 @@ const EntradaBalcaoForm = () => {
     const hasBackup = !formata || backups.some((b) => b.trim() !== '');
 
     return hasDados && hasEmail && hasPatrimonio && hasBackup;
+  };
+
+  const handleGerarTermoFormatacao = () => {
+    gerarDocumento({
+      template: 'modelo-formatacao.docx',
+      nomeArquivo: 'termo-formatacao.docx',
+      data: {
+        nome: dados?.nome,
+        matricula: dados?.matricula,
+        unidade: dados?.unidade,
+        patrimonio,
+        title: `[LAB] FORMATAÇÃO ${formata ? 'C/BKP' : 'S/BKP'}${hardwareUpgrade && hardwareTipo ? ` + Instalar ${hardwareTipo}` : ''}`,
+        backup: formata ? backups.join(', ') : 'Dispensado',
+        instalacao: hardwareUpgrade ? hardwareTipo : 'Não se aplica',
+        observacao,
+      },
+    });
   };
 
   return (
@@ -226,7 +244,7 @@ const EntradaBalcaoForm = () => {
         <button
           disabled={!isFormularioValido()}
           className="submit-button"
-          onClick={() => alert('Termo gerado e cadastro realizado!')}
+          onClick={handleGerarTermoFormatacao}
         >
           Gerar termo e Cadastrar
         </button>
